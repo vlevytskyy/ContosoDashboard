@@ -5,6 +5,11 @@
 **Status**: Draft
 **Input**: User description: "Document Upload and Management Feature - Requirements"
 
+## Clarifications
+
+### Session 2026-05-28
+- Q: Should sharing support individual users, teams, or both? → A: Share documents with both individual users and teams.
+
 ## User Scenarios & Testing *(mandatory)*
 
 ### User Story 1 - Upload Document (Priority: P1)
@@ -71,13 +76,13 @@ As a Document Owner or Project Manager, I want to share, edit metadata, replace 
 - **FR-007**: Uploaded files MUST be stored outside web-accessible directories and served via authorized endpoints.
 - **FR-008**: System MUST provide views for "My Documents", "Project Documents", and "Shared with Me" with sorting and filtering capabilities.
 - **FR-009**: System MUST support search by title, description, tags, uploader name, and associated project, returning only permitted documents and meeting the 2s response target.
-- **FR-010**: System MUST allow document owners to edit metadata, replace files, and delete documents they own; Project Managers MAY delete any project document.
+- **FR-010**: System MUST allow document owners to edit metadata, replace files, delete documents they own, and share documents with individual users or teams; Project Managers MAY delete any project document.
 - **FR-011**: System MUST log all document-related activities (upload, download, delete, share) for audit purposes.
 
 ### Key Entities
 
 - **Document**: title, description, category, associatedProjectId, tags, uploadedByUserId, uploadDateTime, fileSize, contentType, filePath, originalFileName, DocumentId (int).
-- **DocumentShare**: documentId, sharedWithUserId or teamId, sharedByUserId, shareDateTime, permissions.
+- **DocumentShare**: documentId, sharedWithUserId or sharedWithTeamId, sharedByUserId, shareDateTime, permissions.
 
 ## Success Criteria *(mandatory)*
 
