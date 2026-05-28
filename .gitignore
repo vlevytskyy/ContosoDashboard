@@ -353,3 +353,6 @@ MigrationBackup/
 # IDE
 .vscode/
 .idea/
+
+# SQLLite
+ContosoDashboard.db

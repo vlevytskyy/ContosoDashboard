@@ -1,50 +1,62 @@
-# [PROJECT_NAME] Constitution
-<!-- Example: Spec Constitution, TaskFlow Constitution, etc. -->
+<!--
+Sync Impact Report
+- Version: placeholder → 1.0.0
+- Modified principles: Added 5 core principles
+- Added sections: Training Constraints, Development Workflow
+- Removed sections: none
+- Templates reviewed:
+  - .specify/templates/spec-template.md ✅ reviewed, no constitution-driven changes required
+  - .specify/templates/plan-template.md ✅ reviewed, no constitution-driven changes required
+  - .specify/templates/tasks-template.md ✅ reviewed, no constitution-driven changes required
+- Follow-up TODOs: none
+-->
+
+# ContosoDashboard Constitution
 
 ## Core Principles
 
-### [PRINCIPLE_1_NAME]
-<!-- Example: I. Library-First -->
-[PRINCIPLE_1_DESCRIPTION]
-<!-- Example: Every feature starts as a standalone library; Libraries must be self-contained, independently testable, documented; Clear purpose required - no organizational-only libraries -->
+### 1. Training-First Clarity
+All project documentation, code comments, and user-facing guidance MUST clearly identify ContosoDashboard as a training artifact and not a production-ready system. This ensures learners and reviewers do not mistake the repository for a deployable enterprise application.
 
-### [PRINCIPLE_2_NAME]
-<!-- Example: II. CLI Interface -->
-[PRINCIPLE_2_DESCRIPTION]
-<!-- Example: Every library exposes functionality via CLI; Text in/out protocol: stdin/args → stdout, errors → stderr; Support JSON + human-readable formats -->
+### 2. Replaceable Infrastructure
+Infrastructure dependencies MUST be abstracted behind interface boundaries so the application can run locally with built-in services and later migrate to cloud providers. Any code path that depends on external services MUST include a documented local fallback or a training-specific mock implementation.
 
-### [PRINCIPLE_3_NAME]
-<!-- Example: III. Test-First (NON-NEGOTIABLE) -->
-[PRINCIPLE_3_DESCRIPTION]
-<!-- Example: TDD mandatory: Tests written → User approved → Tests fail → Then implement; Red-Green-Refactor cycle strictly enforced -->
+### 3. Realistic Security with Safe Limits
+Security behavior MUST model real-world authorization and access control while preserving a safe training boundary. Mock authentication is permitted only when the limitation is documented, real credentials are not used, and authorization checks prevent IDOR and unauthorized data access.
 
-### [PRINCIPLE_4_NAME]
-<!-- Example: IV. Integration Testing -->
-[PRINCIPLE_4_DESCRIPTION]
-<!-- Example: Focus areas requiring integration tests: New library contract tests, Contract changes, Inter-service communication, Shared schemas -->
+### 4. Specification-Driven Incremental Work
+All feature work MUST begin with a written specification, acceptance criteria, and independent test scenarios. Changes MUST be delivered in small, independently testable increments so learners can validate each behavior before moving to the next.
 
-### [PRINCIPLE_5_NAME]
-<!-- Example: V. Observability, VI. Versioning & Breaking Changes, VII. Simplicity -->
-[PRINCIPLE_5_DESCRIPTION]
-<!-- Example: Text I/O ensures debuggability; Structured logging required; Or: MAJOR.MINOR.BUILD format; Or: Start simple, YAGNI principles -->
+### 5. Explicit Simplicity and Transparency
+The codebase MUST remain simple, explicit, and easy to follow for training audiences. Hidden framework behavior, excessive abstraction, or implementation shortcuts that obscure intent MUST be avoided. Every migration path, security assumption, and training boundary MUST be documented.
 
-## [SECTION_2_NAME]
-<!-- Example: Additional Constraints, Security Requirements, Performance Standards, etc. -->
+## Training Constraints
 
-[SECTION_2_CONTENT]
-<!-- Example: Technology stack requirements, compliance standards, deployment policies, etc. -->
+- ContosoDashboard MUST remain offline-first and local-only for training use.
+- External cloud services, external APIs, and production-grade secrets MUST NOT be introduced in training branches.
+- The repository MUST continue using SQLite and built-in framework capabilities for the default training experience.
+- Any production-grade implementation path (Azure SQL, cloud storage, enterprise identity) MUST be documented as a migration option, not as the default behavior.
+- README and architecture documentation MUST preserve the training-only disclaimer, limitations, and security warnings.
 
-## [SECTION_3_NAME]
-<!-- Example: Development Workflow, Review Process, Quality Gates, etc. -->
+## Development Workflow
 
-[SECTION_3_CONTENT]
-<!-- Example: Code review requirements, testing gates, deployment approval process, etc. -->
+- New work MUST start with a feature specification using the available spec template and include independent acceptance criteria.
+- Pull requests MUST reference the constitution and explain how the proposed change preserves training safety, offline operation, and security patterns.
+- Code review MUST verify that mock authentication remains clearly bounded, authorization is enforced at page and service layers, and offline operation is maintained.
+- Any change affecting authentication, authorization, storage, or infrastructure MUST update the README and training architecture guidance.
+- Testing MUST include a training scenario and at least one authorization or data isolation check for every protected flow.
 
 ## Governance
-<!-- Example: Constitution supersedes all other practices; Amendments require documentation, approval, migration plan -->
 
-[GOVERNANCE_RULES]
-<!-- Example: All PRs/reviews must verify compliance; Complexity must be justified; Use [GUIDANCE_FILE] for runtime development guidance -->
+This constitution is the authoritative guidance for ContosoDashboard development. All plans, specifications, and tasks MUST be evaluated against it before implementation.
 
-**Version**: [CONSTITUTION_VERSION] | **Ratified**: [RATIFICATION_DATE] | **Last Amended**: [LAST_AMENDED_DATE]
-<!-- Example: Version: 2.1.1 | Ratified: 2025-06-13 | Last Amended: 2025-07-16 -->
+- Amendments require a documented rationale, review, and an explicit version update in this file.
+- Every pull request that changes behavior, constraints, or training guidance MUST cite this constitution.
+- The constitution is the source of truth for training constraints and review expectations.
+
+Versioning policy:
+- MAJOR version bump for governance or principle redefinition or removal.
+- MINOR version bump for adding a new principle, section, or materially expanded guidance.
+- PATCH version bump for wording, clarification, or typo fixes.
+
+**Version**: 1.0.0 | **Ratified**: 2026-05-28 | **Last Amended**: 2026-05-28
